@@ -1,0 +1,394 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- This file represents configuration database for HiCON Motion Controller -->
+<HiCONConfig>
+	<EncoderPolarity>  <!-- 1 = as is, -1 = Reverse  -->
+		<Channel_0> 1 </Channel_0>   
+		<Channel_1> 1 </Channel_1>   
+		<Channel_2> 1 </Channel_2>   
+		<Channel_3> 1 </Channel_3>   
+		<Channel_4> 1 </Channel_4>   
+		<Channel_5> 1 </Channel_5>   
+		<Channel_6> 1 </Channel_6>   
+		<Channel_7> 1 </Channel_7>  
+		<Channel_8> 1 </Channel_8>  
+	</EncoderPolarity>	
+	
+	<EncoderDebounce>  <!-- 0 thru 63  -->
+		<Channel_0> 10 </Channel_0>   
+		<Channel_1> 10 </Channel_1>   
+		<Channel_2> 10 </Channel_2>   
+		<Channel_3> 10 </Channel_3>   
+		<Channel_4> 10 </Channel_4>   
+		<Channel_5> 10 </Channel_5>   
+		<Channel_6> 10 </Channel_6>   
+		<Channel_7> 10 </Channel_7>
+		<Channel_8> 10 </Channel_8>  		
+	</EncoderDebounce>	
+
+	<MaxMotionBufferTime>0.100</MaxMotionBufferTime> <!-- Max amount of motion to buffer in the controller in terms of seconds -->
+	
+	<AnalogSpindleScale>102.5</AnalogSpindleScale>  <!-- 10% - 500% value -->
+
+	<EStopInput>8</EStopInput>			<!-- pin 0 through 63 and -1 to ignore (Default -1)-->
+	<EStopActiveLow>0</EStopActiveLow>	<!-- 0 or 1 -->
+	
+	<SensorDebounce>5</SensorDebounce>	<!-- Range of 0 to 250 millisec -->
+	
+	<X-Axis> <!-- Axis 0 -->
+		<Reverse>1</Reverse>						<!--Reverse: 0 - Normal or 1 - Reverse-->
+		<MaxVelocity>50</MaxVelocity> 			<!-- units/min Defecto 20 (revs/min)-->
+		<MaxAcceleration>100</MaxAcceleration>		<!-- units/sec2 Defecto 5 (revs/sec2)-->
+		<CountsPerUnit>6400</CountsPerUnit>	<!-- Pulses x rev-->
+		<MaxError_F>2000</MaxError_F>				<!-- Max Limit on Following Error -->		
+		<BackLashCounts>0</BackLashCounts>
+		<BackLashSpeed>0</BackLashSpeed>
+		
+		<ControlInput>
+			<Source>PositionFollower</Source>	<!-- Source: MotionPlanner, PositionFollower, MPGEncoder -->
+			<Index>0</Index>
+			<Gain>1.000000</Gain>
+		</ControlInput>
+		
+		<Feedback>
+			<Source>Undefined</Source> 		<!-- Encoder, Undefined -->
+			<Index>0</Index>
+			<Gain>1.000000</Gain>
+		</Feedback>
+		
+		<ControlOutput>
+			<Type>Stepper</Type> 			<!-- Undefined, Stepper -->
+			<Index>0</Index>
+		</ControlOutput>
+
+	  <PID_Filter>
+	    <Enable>0</Enable>      <!-- Default = 0-->
+	    <P>200</P>      <!-- Default = 200-->
+	    <I>30</I>      <!-- Default = 30-->
+	    <D>2500</D>      <!-- Default = 2500-->
+	    <VelFeedForward>0</VelFeedForward>
+	    <LowPassFilter>0</LowPassFilter>
+	    <MaxError_I>7500</MaxError_I>
+	    <Deadband>0</Deadband>
+	    <Offset>0</Offset>
+	  </PID_Filter>
+
+    <Limits>
+      <SoftLimitEnable>0</SoftLimitEnable>	<!-- Use the specified soft limits. 1=TRUE, 0=FALSE (Default 0) -->
+			<SoftLimitHi>10</SoftLimitHi> 				<!-- in terms of raw counts, not position units  -->		
+			<SoftLimitLo>-10</SoftLimitLo> 				<!-- in terms of raw counts, not position units  -->
+			
+			<SensorLo>3</SensorLo>  					<!-- 0-63 (digital Input), -1 (undefined) -->
+			<SensorLoActiveLow>1</SensorLoActiveLow>  	<!-- 0 (Active High), 1 (Active Low) -->
+			
+			<SensorHi>0</SensorHi>  					<!-- 0-63 (digital Input), -1 (undefined) -->
+			<SensorHiActiveLow>1</SensorHiActiveLow> 	<!-- 0 (Active High), 1 (Active Low) -->
+		</Limits>
+		
+		<Homing>
+			<UseIndexPulse>0</UseIndexPulse>			<!-- 1 (use Index Pulse), 0 (don't use) Default = 0-->
+			<SensorInput>9</SensorInput> 				<!-- 0-63 (digital input), -1 (undefined) -->
+			<SensorActiveLow>0</SensorActiveLow> 		<!-- 0 (Active High), 1 (Active Low) -->
+			<Reverse>0</Reverse>						<!-- 1 (home in reverse), 0 (home normally) -->
+      <IndependentHoming>1</IndependentHoming>
+      <BackOffSpeed>0.5</BackOffSpeed>  <!-- 0.5 Default Back Off Speed-->
+		</Homing>
+	</X-Axis>
+	
+	<Y-Axis> <!-- Axis 1 -->
+		<Reverse>1</Reverse>						<!--Reverse: 0 - Normal or 1 - Reverse-->
+		<MaxVelocity>50</MaxVelocity> 			<!-- units/min -->
+		<MaxAcceleration>100</MaxAcceleration>		<!-- units/sec2 -->
+		<CountsPerUnit>6400</CountsPerUnit>	
+		<MaxError_F>2000</MaxError_F>				<!-- Max Limit on Following Error -->		
+		<BackLashCounts>0</BackLashCounts>
+		<BackLashSpeed>0</BackLashSpeed>
+		
+		<ControlInput>
+			<Source>PositionFollower</Source>	<!-- Source: MotionPlanner, PositionFollower, MPGEncoder -->
+			<Index>1</Index>
+			<Gain>1.000000</Gain>
+		</ControlInput>
+		
+		<Feedback>
+			<Source>Undefined</Source> 		<!-- Encoder, Undefined -->
+			<Index>1</Index>
+			<Gain>1.000000</Gain>
+		</Feedback>
+		
+		<ControlOutput>
+			<Type>Stepper</Type> 			<!-- Undefined, Stepper -->
+			<Index>1</Index>
+		</ControlOutput>
+
+    <PID_Filter>
+      <Enable>0</Enable>
+      <P>200</P>	<!-- Default = 200-->
+      <I>30</I>   <!-- Default = 30-->
+      <D>2500</D>   <!-- Default = 2500-->
+      <VelFeedForward>0</VelFeedForward>
+      <LowPassFilter>0</LowPassFilter>
+      <MaxError_I>7500</MaxError_I>
+      <Deadband>0</Deadband>
+      <Offset>0</Offset>
+    </PID_Filter>
+    
+		<Limits>
+			<SoftLimitEnable>0</SoftLimitEnable>	<!-- Use the specified soft limits. 1=TRUE, 0=FALSE -->
+			<SoftLimitHi>20</SoftLimitHi> 				<!-- in terms of raw counts, not position units  -->		
+			<SoftLimitLo>-20</SoftLimitLo> 				<!-- in terms of raw counts, not position units  -->
+			
+			<SensorLo>4</SensorLo>  					<!-- 0-63 (digital Input), -1 (undefined) -->
+			<SensorLoActiveLow>1</SensorLoActiveLow>  	<!-- 0 (Active High), 1 (Active Low) -->
+			
+			<SensorHi>1</SensorHi>  					<!-- 0-63 (digital Input), -1 (undefined) -->
+			<SensorHiActiveLow>1</SensorHiActiveLow> 	<!-- 0 (Active High), 1 (Active Low) -->
+		</Limits>
+		
+		<Homing>
+			<UseIndexPulse>0</UseIndexPulse>			<!-- 1 (use Index Pulse), 0 (don't use) -->
+			<SensorInput>10</SensorInput> 				<!-- 0-63 (digital input), -1 (undefined) -->
+			<SensorActiveLow>0</SensorActiveLow> 		<!-- 0 (Active High), 1 (Active Low) -->
+			<Reverse>0</Reverse>						<!-- 1 (home in reverse), 0 (home normally) -->
+      <BackOffSpeed>0.1</BackOffSpeed>      <!-- 0.5 Default Back Off Speed-->
+    </Homing>
+	</Y-Axis>
+	
+	<Z-Axis> <!-- Axis 2 -->
+		<Reverse>1</Reverse>						<!--Reverse: 0 - Normal or 1 - Reverse-->
+		<MaxVelocity>50</MaxVelocity> 			<!-- units/min -->
+		<MaxAcceleration>100</MaxAcceleration>		<!-- units/sec2 -->
+		<CountsPerUnit>6400</CountsPerUnit>	
+		<MaxError_F>2000</MaxError_F>				<!-- Max Limit on Following Error -->		
+		<BackLashCounts>0</BackLashCounts>
+		<BackLashSpeed>0</BackLashSpeed>
+		
+		<ControlInput>
+			<Source>PositionFollower</Source>	<!-- Source: MotionPlanner, PositionFollower, MPGEncoder -->
+			<Index>2</Index>
+			<Gain>1.000000</Gain>
+		</ControlInput>
+		
+		<Feedback>
+			<Source>Undefined</Source> 		<!-- Encoder, Undefined -->
+			<Index>2</Index>
+			<Gain>1.000000</Gain>
+		</Feedback>
+		
+		<ControlOutput>
+			<Type>Stepper</Type> 			<!-- Undefined, Stepper -->
+			<Index>2</Index>
+		</ControlOutput>
+
+    <PID_Filter>
+      <Enable>0</Enable>
+      <P>200</P>	<!-- Default = 200-->
+      <I>30</I>   <!-- Default = 30-->
+      <D>2500</D>   <!-- Default = 2500-->
+      <VelFeedForward>0</VelFeedForward>
+      <LowPassFilter>0</LowPassFilter>
+      <MaxError_I>7500</MaxError_I>
+      <Deadband>0</Deadband>
+      <Offset>0</Offset>
+    </PID_Filter>
+    
+		<Limits>
+			<SoftLimitEnable>0</SoftLimitEnable>	<!-- Use the specified soft limits. 1=TRUE, 0=FALSE -->
+			<SoftLimitHi>20</SoftLimitHi> 				<!-- in terms of raw counts, not position units  -->		
+			<SoftLimitLo>-20</SoftLimitLo> 				<!-- in terms of raw counts, not position units  -->
+			
+			<SensorLo>5</SensorLo>  					<!-- 0-63 (digital Input), -1 (undefined) -->
+			<SensorLoActiveLow>1</SensorLoActiveLow>  	<!-- 0 (Active High), 1 (Active Low) -->
+			
+			<SensorHi>2</SensorHi>  					<!-- 0-63 (digital Input), -1 (undefined) -->
+			<SensorHiActiveLow>1</SensorHiActiveLow> 	<!-- 0 (Active High), 1 (Active Low) -->
+		</Limits>
+		
+		<Homing>
+			<UseIndexPulse>0</UseIndexPulse>			<!-- 1 (use Index Pulse), 0 (don't use) -->
+			<SensorInput>11</SensorInput> 				<!-- 0-63 (digital input), -1 (undefined) -->
+			<SensorActiveLow>0</SensorActiveLow> 		<!-- 0 (Active High), 1 (Active Low) -->
+			<Reverse>0</Reverse>						<!-- 1 (home in reverse), 0 (home normally) -->
+      <BackOffSpeed>0.1</BackOffSpeed>      <!-- 0.5 Default Back Off Speed-->
+    </Homing>
+	</Z-Axis>
+	
+	<A-Axis> <!-- Axis 3 -->
+		<Reverse>0</Reverse>						<!--Reverse: 0 - Normal or 1 - Reverse-->
+		<MaxVelocity>300</MaxVelocity> 			<!-- units/min -->
+		<MaxAcceleration>100</MaxAcceleration>		<!-- units/sec2 -->
+		<CountsPerUnit>2000</CountsPerUnit>	
+		<MaxError_F>2000</MaxError_F>				<!-- Max Limit on Following Error -->		
+		<BackLashCounts>0</BackLashCounts>
+		<BackLashSpeed>0</BackLashSpeed>
+		
+		<ControlInput>
+			<Source>MotionPlanner</Source>	<!-- Source: MotionPlanner, PositionFollower, MPGEncoder -->
+			<Index>3</Index>
+			<Gain>1.000000</Gain>
+		</ControlInput>
+		
+		<Feedback>
+			<Source>Undefined</Source> 		<!-- Encoder, Undefined -->
+			<Index>3</Index>
+			<Gain>1.000000</Gain>
+		</Feedback>
+		
+		<ControlOutput>
+			<Type>Stepper</Type> 			<!-- Undefined, Stepper -->
+			<Index>3</Index>
+		</ControlOutput>
+
+    <PID_Filter>
+      <Enable>0</Enable>
+      <P>200</P>
+      <I>30</I>
+      <D>2500</D>
+      <VelFeedForward>0</VelFeedForward>
+      <LowPassFilter>0</LowPassFilter>
+      <MaxError_I>7500</MaxError_I>
+      <Deadband>0</Deadband>
+      <Offset>0</Offset>
+    </PID_Filter>
+    
+		<Limits>
+			<SoftLimitEnable>0</SoftLimitEnable>	<!-- Use the specified soft limits. 1=TRUE, 0=FALSE -->
+			<SoftLimitHi>20</SoftLimitHi> 				<!-- in terms of raw counts, not position units  -->		
+			<SoftLimitLo>-20</SoftLimitLo> 				<!-- in terms of raw counts, not position units  -->
+			
+			<SensorLo>-1</SensorLo>  					<!-- 0-63 (digital Input), -1 (undefined) -->
+			<SensorLoActiveLow>1</SensorLoActiveLow>  	<!-- 0 (Active High), 1 (Active Low) -->
+			
+			<SensorHi>-1</SensorHi>  					<!-- 0-63 (digital Input), -1 (undefined) -->
+			<SensorHiActiveLow>1</SensorHiActiveLow> 	<!-- 0 (Active High), 1 (Active Low) -->
+		</Limits>
+		
+		<Homing>
+			<UseIndexPulse>0</UseIndexPulse>			<!-- 1 (use Index Pulse), 0 (don't use) -->
+			<SensorInput>-1</SensorInput> 				<!-- 0-63 (digital input), -1 (undefined) -->
+			<SensorActiveLow>1</SensorActiveLow> 		<!-- 0 (Active High), 1 (Active Low) -->
+			<Reverse>0</Reverse>						<!-- 1 (home in reverse), 0 (home normally) -->
+      <BackOffSpeed>0.5</BackOffSpeed>      <!-- 0.5 Default Back Off Speed-->
+    </Homing>
+	</A-Axis>
+	
+	<B-Axis> <!-- Axis 4 -->
+		<Reverse>0</Reverse>						<!--Reverse: 0 - Normal or 1 - Reverse-->
+		<MaxVelocity>300</MaxVelocity> 			<!-- units/min -->
+		<MaxAcceleration>100</MaxAcceleration>		<!-- units/sec2 -->
+		<CountsPerUnit>2000</CountsPerUnit>	
+		<MaxError_F>2000</MaxError_F>				<!-- Max Limit on Following Error -->		
+		<BackLashCounts>0</BackLashCounts>
+		<BackLashSpeed>0</BackLashSpeed>
+		
+		<ControlInput>
+			<Source>MotionPlanner</Source>	<!-- Source: MotionPlanner, PositionFollower, MPGEncoder -->
+			<Index>4</Index>
+			<Gain>1.000000</Gain>
+		</ControlInput>
+		
+		<Feedback>
+			<Source>Undefined</Source> 		<!-- Encoder, Undefined -->
+			<Index>4</Index>
+			<Gain>1.000000</Gain>
+		</Feedback>
+		
+		<ControlOutput>
+			<Type>Undefined</Type> 			<!-- Undefined, Stepper -->
+			<Index>4</Index>
+		</ControlOutput>
+
+    <PID_Filter>
+      <Enable>0</Enable>
+      <P>200</P>
+      <I>30</I>
+      <D>2500</D>
+      <VelFeedForward>0</VelFeedForward>
+      <LowPassFilter>0</LowPassFilter>
+      <MaxError_I>7500</MaxError_I>
+      <Deadband>0</Deadband>
+      <Offset>0</Offset>
+    </PID_Filter>
+    
+		<Limits>
+			<SoftLimitEnable>0</SoftLimitEnable>	<!-- Use the specified soft limits. 1=TRUE, 0=FALSE -->
+			<SoftLimitHi>20</SoftLimitHi> 				<!-- in terms of raw counts, not position units  -->		
+			<SoftLimitLo>-20</SoftLimitLo> 				<!-- in terms of raw counts, not position units  -->
+			
+			<SensorLo>-1</SensorLo>  					<!-- 0-63 (digital Input), -1 (undefined) -->
+			<SensorLoActiveLow>1</SensorLoActiveLow>  	<!-- 0 (Active High), 1 (Active Low) -->
+			
+			<SensorHi>-1</SensorHi>  					<!-- 0-63 (digital Input), -1 (undefined) -->
+			<SensorHiActiveLow>1</SensorHiActiveLow> 	<!-- 0 (Active High), 1 (Active Low) -->
+		</Limits>
+		
+		<Homing>
+			<UseIndexPulse>0</UseIndexPulse>			<!-- 1 (use Index Pulse), 0 (don't use) -->
+			<SensorInput>-1</SensorInput> 				<!-- 0-63 (digital input), -1 (undefined) -->
+			<SensorActiveLow>1</SensorActiveLow> 		<!-- 0 (Active High), 1 (Active Low) -->
+			<Reverse>0</Reverse>						<!-- 1 (home in reverse), 0 (home normally) -->
+      <BackOffSpeed>0.5</BackOffSpeed>      <!-- 0.5 Default Back Off Speed-->
+    </Homing>
+	</B-Axis>
+	
+	<C-Axis> <!-- Axis 5 -->
+		<Reverse>0</Reverse>						<!--Reverse: 0 - Normal or 1 - Reverse-->
+		<MaxVelocity>300</MaxVelocity> 			<!-- units/min -->
+		<MaxAcceleration>100</MaxAcceleration>		<!-- units/sec2 -->
+		<CountsPerUnit>2000</CountsPerUnit>	
+		<MaxError_F>2000</MaxError_F>				<!-- Max Limit on Following Error -->		
+		<BackLashCounts>0</BackLashCounts>
+		<BackLashSpeed>0</BackLashSpeed>
+		
+		<ControlInput>
+			<Source>MotionPlanner</Source>	<!-- Source: MotionPlanner, PositionFollower, MPGEncoder -->
+			<Index>5</Index>
+			<Gain>1.000000</Gain>
+		</ControlInput>
+		
+		<Feedback>
+			<Source>Undefined</Source> 		<!-- Encoder, Undefined -->
+			<Index>5</Index>
+			<Gain>1.000000</Gain>
+		</Feedback>
+		
+		<ControlOutput>
+			<Type>Undefined</Type> 			<!-- Undefined, Stepper -->
+			<Index>5</Index>
+		</ControlOutput>
+
+    <PID_Filter>
+      <Enable>0</Enable>
+      <P>200</P>
+      <I>30</I>
+      <D>2500</D>
+      <VelFeedForward>0</VelFeedForward>
+      <LowPassFilter>0</LowPassFilter>
+      <MaxError_I>7500</MaxError_I>
+      <Deadband>0</Deadband>
+      <Offset>0</Offset>
+    </PID_Filter>
+    
+		<Limits>
+			<SoftLimitEnable>0</SoftLimitEnable>	<!-- Use the specified soft limits. 1=TRUE, 0=FALSE -->
+			<SoftLimitHi>20</SoftLimitHi> 				<!-- in terms of raw counts, not position units  -->		
+			<SoftLimitLo>-20</SoftLimitLo> 				<!-- in terms of raw counts, not position units  -->
+			
+			<SensorLo>-1</SensorLo>  					<!-- 0-63 (digital Input), -1 (undefined) -->
+			<SensorLoActiveLow>1</SensorLoActiveLow>  	<!-- 0 (Active High), 1 (Active Low) -->
+			
+			<SensorHi>-1</SensorHi>  					<!-- 0-63 (digital Input), -1 (undefined) -->
+			<SensorHiActiveLow>1</SensorHiActiveLow> 	<!-- 0 (Active High), 1 (Active Low) -->
+		</Limits>
+		
+		<Homing>
+			<UseIndexPulse>0</UseIndexPulse>			<!-- 1 (use Index Pulse), 0 (don't use) -->
+			<SensorInput>-1</SensorInput> 				<!-- 0-63 (digital input), -1 (undefined) -->
+			<SensorActiveLow>1</SensorActiveLow> 		<!-- 0 (Active High), 1 (Active Low) -->
+			<Reverse>0</Reverse>						<!-- 1 (home in reverse), 0 (home normally) -->
+      <BackOffSpeed>0.5</BackOffSpeed>      <!-- 0.5 Default Back Off Speed-->
+    </Homing>
+	</C-Axis>
+	
+</HiCONConfig>
+
+
